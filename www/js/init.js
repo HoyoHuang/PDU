@@ -9,7 +9,7 @@ FormLogin.submit(function(){}).validationEngine({
         if (status == true) {
 
             $.ajax({
-                url: WebSite +'/APP/?a=User&b=Login',
+                url: WebSite +'/APPv1/?a=User&b=Login',
                 type: 'post',
                 dataType: 'json',
                 data: FormLogin.find("input[type='hidden'], :input:not(:hidden)").serialize(), // +'&id='+ $('#Group_id').val(),
@@ -17,11 +17,16 @@ FormLogin.submit(function(){}).validationEngine({
 
                     if( Json['Result'] ==true ) {
 
+                        localStorage.setItem("Token", Json['Data']['Token']);
+
                         HoyoToast.Success({
                             Message: '<span>完成！</span>',
                             Time: 3000,
                             Position: ''
                         });
+
+                        $('#idAreaLogin').addClass('hide');
+                        $('#idAreaUser').removeClass('hide')
 
                     }
                     else {

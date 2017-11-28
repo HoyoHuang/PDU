@@ -9,13 +9,15 @@ FormLogin.submit(function(){}).validationEngine({
         if (status == true) {
 
             $.ajax({
-                url: WebSite +'/LeaveGroup&b=Delete',
+                url: WebSite +'/APPv1/?a=User&b=Login',
                 type: 'post',
                 dataType: 'json',
-                data: FromGroupDelete.find("input[type='hidden'], :input:not(:hidden)").serialize() +'&id='+ $('#Group_id').val(),
+                data: FormLogin.find("input[type='hidden'], :input:not(:hidden)").serialize(), // +'&id='+ $('#Group_id').val(),
                 success: function(Json){
 
                     if( Json['Result'] ==true ) {
+
+                        localStorage.setItem("Token", Json['Data']['Token']);
 
                         HoyoToast.Success({
                             Message: '<span>完成！</span>',
@@ -23,10 +25,8 @@ FormLogin.submit(function(){}).validationEngine({
                             Position: ''
                         });
 
-                        $('.modal').modal('close');
-
-                        leave(); // 重新讀取群組清單
-                        cMain.html(''); // 清空 main
+                        $('#idAreaLogin').addClass('hide');
+                        $('#idAreaUser').removeClass('hide')
 
                     }
                     else {
