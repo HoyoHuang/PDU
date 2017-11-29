@@ -8,7 +8,8 @@
     <title>PDU</title>
 
     <!-- jQuery -->
-    <script src="Component_Front/jquery-1.11.3.min.js"></script>
+    <!--<script src="Component_Front/jquery-1.11.3.min.js"></script>-->
+    <script src="Component_Front/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="Component_Front/materialize/css/materialize.css">
     <link rel="stylesheet" href="Component_Front/materialize/fonts/MaterialIcons.css"/>
     <link rel="stylesheet" href="css/style.css"/>
@@ -85,87 +86,85 @@
                 <li class="tab col s3"><a href="#idTab4" class="waves-effect waves-light">維護</a></li>
             </ul>
         </div>
-        <div class="col s12">
-            <div id="idTab1" class="col s12">
+        <div id="idTab1" class="col s12" style="height: 100%;">
 
-                <div class="margin-16"></div>
+            <div class="margin-16"></div>
 
-                <form id="idFormJoin" class="login-form">
-                    <div class="row">
-                        <div class="input-field col s12 center">
-                            <img src="" alt="" class="circle responsive-img valign profile-image-login">
-                            <p class="center">加入 PDU</p>
-                        </div>
+            <form id="idFormJoin" class="login-form">
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <img src="" alt="" class="circle responsive-img valign profile-image-login">
+                        <p class="center">加入 PDU</p>
                     </div>
-                    <div class="row margin">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix pt-5">perm_device_information</i>
-                            <input id="URL" type="text" name="URL" data-validation-engine="validate[required]" placeholder="http://0.0.0.0:80">
-                            <label for="URL" class="center-align">完整網址</label>
-                        </div>
-                    </div>
-                    <div class="row margin">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix pt-5">person_outline</i>
-                            <input id="JoinUsername" type="text" name="Username" data-validation-engine="validate[required]">
-                            <label for="JoinUsername">帳號</label>
-                        </div>
-                    </div>
-                    <div class="row margin">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix pt-5">lock_outline</i>
-                            <input id="JoinPassword" type="password" name="Password" data-validation-engine="validate[required]">
-                            <label for="JoinPassword">密碼</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <button type="submit" class="waves-effect waves-light gradient-45deg-indigo-light-blue btn col s12">註冊加入</button>
-                        </div>
-
-                    </div>
-                </form>
-
-            </div>
-
-            <!-- 看 -->
-            <div id="idTab2" class="col s12">
-
-                <div class="margin-16"></div>
-
-                <template id="idTab2Template">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="{{image}}">
-                                <span class="card-title">{{title}}</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                            </div>
-                            <div class="card-content">
-                                <p>{{content}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-
-                <div>單一</div>
-                <div class="row" id="idTab2PDUOne">
                 </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix pt-5">perm_device_information</i>
+                        <input id="URL" type="text" name="URL" data-validation-engine="validate[required]" placeholder="http://0.0.0.0:80">
+                        <label for="URL" class="center-align">完整網址</label>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix pt-5">person_outline</i>
+                        <input id="JoinUsername" type="text" name="Username" data-validation-engine="validate[required]">
+                        <label for="JoinUsername">帳號</label>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix pt-5">lock_outline</i>
+                        <input id="JoinPassword" type="password" name="Password" data-validation-engine="validate[required]">
+                        <label for="JoinPassword">密碼</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" class="waves-effect waves-light gradient-45deg-indigo-light-blue btn col s12">註冊加入</button>
+                    </div>
 
-                <div>分群</div>
-                <div id="idTab2PDUGroup"></div>
-
-            </div>
-
-            <!-- 維 -->
-            <div id="idTab4" class="col s12">
-
-                <div class="margin-16"></div>
-
-            </div>
-
+                </div>
+            </form>
 
         </div>
+
+        <!-- 看 -->
+        <div id="idTab2" class="col s12" style="height: 100%;">
+
+            <div class="margin-16"></div>
+
+            <template id="idTab2Template">
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{image}}">
+                            <span class="card-title">{{title}}</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>{{content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <div>單一</div>
+            <div class="row" id="idTab2PDUOne">
+            </div>
+
+            <div>分群</div>
+            <div id="idTab2PDUGroup"></div>
+
+        </div>
+
+        <!-- 維 -->
+        <div id="idTab4" class="col s12" style="height: 100%;">
+
+            <div class="margin-16"></div>
+
+        </div>
+
+
     </div>
 
 </div>
