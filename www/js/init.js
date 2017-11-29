@@ -1,5 +1,4 @@
 
-
 //
 var FormLogin = $('#idFormLogin');
 FormLogin.submit(function(){}).validationEngine({
@@ -38,6 +37,16 @@ FormLogin.submit(function(){}).validationEngine({
                         });
                     }
 
+                },
+                error: function(xhr, status, error){
+                    console.log(JSON.stringify(xhr));
+                    if ( status =='error' ) {
+                        HoyoToast.Fail({
+                            Message: '<span>錯誤！和主機 ('+ WebSite +') 連線發生錯誤</span>',
+                            Time: 3000,
+                            Position: ''
+                        });
+                    }
                 }
             });
 

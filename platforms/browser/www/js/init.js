@@ -5,6 +5,7 @@ var FormLogin = $('#idFormLogin');
 FormLogin.submit(function(){}).validationEngine({
     onValidationComplete: function(form, status) {
 
+        console.log(status);
         //
         if (status == true) {
 
