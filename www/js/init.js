@@ -27,7 +27,8 @@ FormLogin.submit(function(){}).validationEngine({
                         });
 
                         $('#idAreaLogin').addClass('hide');
-                        $('#idAreaUser').removeClass('hide')
+                        $('#idAreaUser').removeClass('hide');
+                        idTabs.tabs('select_tab', 'idTab1');
 
                     }
                     else {
@@ -41,7 +42,6 @@ FormLogin.submit(function(){}).validationEngine({
 
                 },
                 error: function(xhr, status, error){
-                    console.log(JSON.stringify(xhr));
                     if ( status =='error' ) {
                         HoyoToast.Fail({
                             Message: '<span>錯誤！和主機 ('+ WebSite +') 連線發生錯誤</span>',
@@ -76,12 +76,10 @@ FormJoin.submit(function(){}).validationEngine({
                 url: WebSite +'/APPv1/?a=PDU&b=Join',
                 type: 'post',
                 dataType: 'json',
-                data: FormJoin.find("input[type='hidden'], :input:not(:hidden)").serialize(), // +'&id='+ $('#Group_id').val(),
+                data: FormJoin.find("input[type='hidden'], :input:not(:hidden)").serialize() +'&Token='+ $Token,
                 success: function(Json){
 
                     if( Json['Result'] ==true ) {
-
-                        localStorage.setItem("Token", Json['Data']['Token']);
 
                         HoyoToast.Success({
                             Message: '<span>完成！</span>',
@@ -89,6 +87,7 @@ FormJoin.submit(function(){}).validationEngine({
                             Position: ''
                         });
 
+                        document.getElementById('idFormJoin').reset();
                     }
                     else {
 
@@ -101,7 +100,6 @@ FormJoin.submit(function(){}).validationEngine({
 
                 },
                 error: function(xhr, status, error){
-                    console.log(JSON.stringify(xhr));
                     if ( status =='error' ) {
                         HoyoToast.Fail({
                             Message: '<span>錯誤！和主機 ('+ WebSite +') 連線發生錯誤</span>',
@@ -138,9 +136,17 @@ function searchPDU(){
 
             if( Json['Result'] ==true ) {
 
-                var h = '';
-                $('#idTab2PDUOne').html(h);
+                var t = '';
+                $.each( Json['Data']['Device'], function(k,v){
+                    t = $('#idTab2Template').clone().html();
 
+                    t = str_replace('{{title}}', ((v['Name']!='')? v['Name']: v['URL']), t);
+                    t = str_replace('{{LastTime}}', v['LastTime'], t);
+                    t = str_replace('{{content}}', '', t);
+                    t = str_replace('{{link}}', '', t);
+                });
+
+                $('#idTab2PDUOne').html(t);
             }
             else {
 
@@ -153,7 +159,6 @@ function searchPDU(){
 
         },
         error: function(xhr, status, error){
-            console.log(JSON.stringify(xhr));
             if ( status =='error' ) {
                 HoyoToast.Fail({
                     Message: '<span>錯誤！和主機 ('+ WebSite +') 連線發生錯誤</span>',
@@ -187,7 +192,12 @@ $(function(){
 
         });
 
-        idTabs.tabs({ 'swipeable': true });
+        idTabs.tabs({
+            //swipeable: true,
+            //onShow: function(tab){
+            //    console.log($(tab));
+            //}
+        });
     }
 
 });

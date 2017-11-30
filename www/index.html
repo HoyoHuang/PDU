@@ -32,10 +32,16 @@
         .picker__date-display {
             display: none;
         }
+        /*.carousel{*/
+        /*height: calc( 100vh - 68px ) !important;*/
+        /*}*/
+        /*.carousel .carousel-item{*/
+        /*height: calc( 100vh - 68px ) !important;*/
+        /*}*/
     </style>
 
 </head>
-<body>
+<body style="overflow-y: scroll !important;">
 
 <!-- 登入 -->
 <div id="idAreaLogin" class="hide">
@@ -79,14 +85,14 @@
     <div class="margin-16"></div>
 
     <div class="row">
-        <div class="col s12">
+        <div class="col s12 grey lighten-2">
             <ul id="idTabs" class="tabs tabs-fixed-width z-depth-1">
                 <li class="tab col s3" data-tab="A"><a href="#idTab1" class="waves-effect waves-light active">加入</a></li>
                 <li class="tab col s3" data-tab="B"><a href="#idTab2" class="waves-effect waves-light">PDU</a></li>
                 <li class="tab col s3"><a href="#idTab4" class="waves-effect waves-light">維護</a></li>
             </ul>
         </div>
-        <div id="idTab1" class="col s12" style="height: 100%;">
+        <div id="idTab1" class="col s12 grey lighten-5" style="overflow-y: hidden;">
 
             <div class="margin-16"></div>
 
@@ -97,29 +103,36 @@
                         <p class="center">加入 PDU</p>
                     </div>
                 </div>
-                <div class="row margin">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix pt-5">label_outline</i>
+                        <input id="Name" type="text" name="Name">
+                        <label for="Name" class="center-align">名稱</label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix pt-5">perm_device_information</i>
                         <input id="URL" type="text" name="URL" data-validation-engine="validate[required]" placeholder="http://0.0.0.0:80">
                         <label for="URL" class="center-align">完整網址</label>
                     </div>
                 </div>
-                <div class="row margin">
+                <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix pt-5">person_outline</i>
                         <input id="JoinUsername" type="text" name="Username" data-validation-engine="validate[required]">
-                        <label for="JoinUsername">帳號</label>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix pt-5">lock_outline</i>
-                        <input id="JoinPassword" type="password" name="Password" data-validation-engine="validate[required]">
-                        <label for="JoinPassword">密碼</label>
+                        <label for="JoinUsername">登入帳號</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
+                        <i class="material-icons prefix pt-5">lock_outline</i>
+                        <input id="JoinPassword" type="password" name="Password" data-validation-engine="validate[required]">
+                        <label for="JoinPassword">登入密碼</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
                         <button type="submit" class="waves-effect waves-light gradient-45deg-indigo-light-blue btn col s12">註冊加入</button>
                     </div>
 
@@ -129,41 +142,50 @@
         </div>
 
         <!-- 看 -->
-        <div id="idTab2" class="col s12" style="height: 100%;">
+        <div id="idTab2" class="col s12 grey lighten-4" style="overflow-y: hidden;">
 
             <div class="margin-16"></div>
 
             <template id="idTab2Template">
                 <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{image}}">
-                            <span class="card-title">{{title}}</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                        </div>
+                    <div class="card teal lighten-5">
                         <div class="card-content">
+                            <span class="card-title">{{title}}</span>
+                            <p>最後更新：{{LastTime}}</p>
                             <p>{{content}}</p>
+                        </div>
+                        <div class="card-action teal lighten-4" style="line-height: 36px;">
+                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">即時</a>
+                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">週</a>
+                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">月</a>
+                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">開關電源</a>
+                            <a href="#" class="orange-text darken-4">{{link}}</a>
                         </div>
                     </div>
                 </div>
             </template>
 
-            <div>單一</div>
+            <div class="tab-title">單一</div>
             <div class="row" id="idTab2PDUOne">
             </div>
 
-            <div>分群</div>
+            <div class="tab-title">分群</div>
             <div id="idTab2PDUGroup"></div>
 
         </div>
 
         <!-- 維 -->
-        <div id="idTab4" class="col s12" style="height: 100%;">
+        <div id="idTab4" class="col s12 grey lighten-5" style="overflow-y: hidden;">
 
             <div class="margin-16"></div>
 
-        </div>
+            <template id="idTab4Template">
+                <div>Token:{{Token}}</div>
+            </template>
 
+            <div id="idTab4Show"></div>
+
+        </div>
 
     </div>
 
