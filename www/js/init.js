@@ -18,7 +18,8 @@ FormLogin.submit(function(){}).validationEngine({
 
                     if( Json['Result'] ==true ) {
 
-                        window.localStorage.setItem("Token", Json['Data']['Token']);
+                        window.localStorage.Token = Json['Data']['Token'];
+                        //window.localStorage.setItem("Token", Json['Data']['Token']);
 
                         HoyoToast.Success({
                             Message: '<span>完成！</span>',
@@ -76,7 +77,7 @@ FormJoin.submit(function(){}).validationEngine({
                 url: WebSite +'/APPv1/?a=PDU&b=Join',
                 type: 'post',
                 dataType: 'json',
-                data: FormJoin.find("input[type='hidden'], :input:not(:hidden)").serialize() +'&Token='+ $Token,
+                data: FormJoin.find("input[type='hidden'], :input:not(:hidden)").serialize() +'&Token='+ window.localStorage.Token,
                 success: function(Json){
 
                     if( Json['Result'] ==true ) {
@@ -130,7 +131,7 @@ function searchPDU(){
         type: 'post',
         dataType: 'json',
         data: {
-            Token: $Token
+            Token: window.localStorage.Token
         },
         success: function(Json){
 
@@ -176,7 +177,7 @@ function searchPDU(){
 function maintain(){
     var m = '';
     m = $('#idTab4Template').clone().html();
-    m = str_replace('{{Token}}', $Token, m);
+    m = str_replace('{{Token}}', window.localStorage.Token, m);
     $('#idTab4Show').html(m);
 }
 

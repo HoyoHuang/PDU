@@ -192,10 +192,9 @@
 </div>
 
 <script>
-    var $Token = '';
-    console.log(localStorage.getItem("Token"));
-    if ( localStorage.getItem("Token") !=undefined && localStorage.getItem("Token") !='' && localStorage.getItem("Token") !=null ){
-        $Token = localStorage.getItem("Token");
+    console.log(window.localStorage.Token);
+//    if ( localStorage.getItem("Token") !=undefined && localStorage.getItem("Token") !='' && localStorage.getItem("Token") !=null ){
+    if ( window.localStorage.Token !=undefined && window.localStorage.Token !='' && window.localStorage.Token !=null ){
         $('#idAreaUser').removeClass('hide');
         $('#idAreaLogin').addClass('hide');
     }
@@ -205,10 +204,6 @@
     }
 </script>
 
-<script type="text/javascript" src="cordova.js"></script>
 <script src="js/init.js"></script>
-<script type="text/javascript">
-    app.initialize();
-</script>
 </body>
 </html>
