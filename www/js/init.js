@@ -126,6 +126,9 @@ FormJoin.submit(function(){}).validationEngine({
 //
 function searchPDU(){
 
+    $('#idTab2Content').addClass('hide');
+    $('#idTab2Loading').removeClass('hide');
+
     $.ajax({
         url: WebSite +'/APPv1/?a=User&b=PDUList',
         type: 'post',
@@ -134,6 +137,11 @@ function searchPDU(){
             Token: window.localStorage.Token
         },
         success: function(Json){
+
+            setTimeout(function(){
+                $('#idTab2Content').removeClass('hide');
+                $('#idTab2Loading').addClass('hide');
+            }, 1000);
 
             if( Json['Result'] ==true ) {
 

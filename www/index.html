@@ -21,6 +21,10 @@
     <script src="Component_Front/jQuery-Validation-Engine-master/js/languages/jquery.validationEngine-zh_TW.js"></script>
     <script src="Component_Front/jQuery-Validation-Engine-master/js/jquery.validationEngine.js"></script>
 
+    <!-- show Loading -->
+    <link rel="stylesheet" href="Component_Front/jQuery-showLoading/loading.css"/>
+    <script src="Component_Front/jQuery-showLoading/jquery.loading.js"></script>
+
     <!--  -->
     <script src="js/config.js"></script>
 
@@ -92,6 +96,7 @@
                 <li class="tab col s3" data-tab="C"><a href="#idTab4" class="waves-effect waves-light">維護</a></li>
             </ul>
         </div>
+
         <div id="idTab1" class="col s12 grey lighten-5" style="overflow-y: hidden;">
 
             <div class="margin-16"></div>
@@ -144,6 +149,22 @@
         <!-- 看 -->
         <div id="idTab2" class="col s12 grey lighten-4" style="overflow-y: hidden;">
 
+            <div id="idTab2Loading" class="col s12 center" style="padding: 16px 0;">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="idTab2Content" class="hide">
+
             <div class="margin-16"></div>
 
             <template id="idTab2Template">
@@ -165,13 +186,14 @@
                 </div>
             </template>
 
-            <div class="tab-title">單一</div>
-            <div class="row" id="idTab2PDUOne">
+
+                <div class="tab-title">單一</div>
+                <div class="row" id="idTab2PDUOne"></div>
+
+                <div class="tab-title">分群</div>
+                <div id="idTab2PDUGroup"></div>
+
             </div>
-
-            <div class="tab-title">分群</div>
-            <div id="idTab2PDUGroup"></div>
-
         </div>
 
         <!-- 維 -->
@@ -192,8 +214,8 @@
 </div>
 
 <script>
-    console.log(window.localStorage.Token);
-//    if ( localStorage.getItem("Token") !=undefined && localStorage.getItem("Token") !='' && localStorage.getItem("Token") !=null ){
+    //    console.log(window.localStorage.Token);
+    //    if ( localStorage.getItem("Token") !=undefined && localStorage.getItem("Token") !='' && localStorage.getItem("Token") !=null ){
     if ( window.localStorage.Token !=undefined && window.localStorage.Token !='' && window.localStorage.Token !=null ){
         $('#idAreaUser').removeClass('hide');
         $('#idAreaLogin').addClass('hide');
