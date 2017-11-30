@@ -138,6 +138,7 @@ function searchPDU(){
             if( Json['Result'] ==true ) {
 
                 var t = '';
+                var h = '';
                 $.each( Json['Data']['Device'], function(k,v){
                     t = $('#idTab2Template').clone().html();
 
@@ -145,9 +146,10 @@ function searchPDU(){
                     t = str_replace('{{LastTime}}', v['LastTime'], t);
                     t = str_replace('{{content}}', '', t);
                     t = str_replace('{{link}}', '', t);
+                    h += t;
                 });
 
-                $('#idTab2PDUOne').html(t);
+                $('#idTab2PDUOne').html(h);
 
             }
             else {
