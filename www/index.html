@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<head>
     <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />-->
 
     <title>PDU</title>
 
@@ -33,9 +36,6 @@
             font-family: Arial, "微軟正黑體", sans-serif;
             font-size: 16px !important;
         }
-        .picker__date-display {
-            display: none;
-        }
         /*.carousel{*/
         /*height: calc( 100vh - 68px ) !important;*/
         /*}*/
@@ -48,7 +48,7 @@
 <body style="overflow-y: scroll !important;">
 
 <!-- 登入 -->
-<div id="idAreaLogin" class="hide">
+<div id="idAreaLogin" class="hide Page">
 
     <div class="col s12 z-depth-4 card-panel">
         <form id="idFormLogin" class="login-form">
@@ -84,7 +84,7 @@
 </div>
 
 <!-- 正常使用 -->
-<div id="idAreaUser" class="hide container">
+<div id="idAreaUser" class="hide container Page">
 
     <div class="margin-16"></div>
 
@@ -178,7 +178,7 @@
                                 <p>{{content}}</p>
                             </div>
                             <div class="card-action teal lighten-4" style="line-height: 36px;">
-                                <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">即時</a>
+                                <a href="#" data-id="{{id}}" class="orange-text darken-4 btn btn-small white-text waves-effect pduReal">即時</a>
                                 <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">週</a>
                                 <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">月</a>
                                 <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">開關電源</a>
@@ -229,6 +229,71 @@
 
     </div>
 
+</div>
+
+<!--  -->
+<div id="idPage3" class="hide Page">
+
+    <div class="navbar-fixed">
+
+        <nav class="nav"><button class="btn waves-effect returnAreaUser"><i class="material-icons">chevron_left</i></button></nav>
+
+    </div>
+
+    <div class="container">
+
+        <div class="col s12 center loading" style="padding: 16px 0;">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content hide">
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+    <div>0</div>
+
+    </div>
+
+    </div>
 </div>
 
 <script>

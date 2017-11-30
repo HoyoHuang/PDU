@@ -158,6 +158,7 @@ function searchPDU(){
                             t = str_replace('{{LastTime}}', v['LastTime'], t);
                             t = str_replace('{{content}}', '', t);
                             t = str_replace('{{link}}', '', t);
+                            t = str_replace('{{id}}', v['id'], t);
                             h += t;
                         });
                     }
@@ -213,6 +214,64 @@ function searchPDU(){
     });
 
 }
+
+//
+$(document).on('click', '.pduReal', function(){
+
+    var $id = $(this).data('id');
+
+    $('.Page').addClass('hide');
+    $('#idPage3').removeClass('hide');
+
+    $('.content').addClass('hide');
+    $('.loading').removeClass('hide');
+
+    $.ajax({
+        url: WebSite +'/APPv1/?a=PDU&b=Real',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            Token: window.localStorage.Token
+        },
+        success: function(Json){
+
+            if ( Json['Login'] =='Y' ) {
+
+                setTimeout(function () {
+                    $('.content').removeClass('hide');
+                    $('.loading').addClass('hide');
+                }, 300);
+
+            }
+
+            // Token 錯誤
+            else{
+                $('.Page').addClass('hide');
+                $('#idAreaLogin').removeClass('hide');
+            }
+
+        },
+        error: function(xhr, status, error){
+            if ( status =='error' ) {
+                HoyoToast.Fail({
+                    Message: '<span>錯誤！和主機 ('+ WebSite +') 連線發生錯誤</span>',
+                    Time: 3000,
+                    Position: ''
+                });
+            }
+        }
+    });
+
+});
+
+// 按下返回
+$(document).on('click', '.returnAreaUser', function(){
+
+    $('.Page').addClass('hide');
+    $('#idAreaUser').removeClass('hide');
+
+});
+
 
 //
 function maintain(){

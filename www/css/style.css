@@ -355,3 +355,6 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+nav i.material-icons {
+    line-height: inherit;
+}
