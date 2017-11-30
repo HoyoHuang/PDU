@@ -2,7 +2,8 @@
 
 PageCount = 30;
 
-WebSite = 'http://pdu.mj-app.com.tw';
+//WebSite = 'http://pdu.mj-app.com.tw';
+WebSite = 'http://tn.sly-ha.com.tw/demo/pdu';
 
 /**
  * 取得網址傳遞 _GET ，例 index.php?aaa=yyy ， 使用 $_GET("aaa") 可得到 yyy

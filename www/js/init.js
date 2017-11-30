@@ -18,7 +18,7 @@ FormLogin.submit(function(){}).validationEngine({
 
                     if( Json['Result'] ==true ) {
 
-                        localStorage.setItem("Token", Json['Data']['Token']);
+                        window.localStorage.setItem("Token", Json['Data']['Token']);
 
                         HoyoToast.Success({
                             Message: '<span>完成！</span>',
