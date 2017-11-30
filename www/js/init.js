@@ -147,6 +147,7 @@ function searchPDU(){
                 });
 
                 $('#idTab2PDUOne').html(t);
+
             }
             else {
 
@@ -172,6 +173,14 @@ function searchPDU(){
 }
 
 //
+function maintain(){
+    var m = '';
+    m = $('#idTab4Template').clone().html();
+    m = str_replace('{{Token}}', $Token, m);
+    $('#idTab4Show').html(m);
+}
+
+//
 $(function(){
 
     if (idTabs.length) {
@@ -186,6 +195,10 @@ $(function(){
 
                 case 'B':
                     searchPDU();
+                    break;
+
+                case 'C':
+                    maintain();
                     break;
 
             }
