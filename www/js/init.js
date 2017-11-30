@@ -18,6 +18,7 @@ FormLogin.submit(function(){}).validationEngine({
 
                     if( Json['Result'] ==true ) {
 
+                        window.localStorage.Username = Json['Data']['Username'];
                         window.localStorage.Token = Json['Data']['Token'];
                         //window.localStorage.setItem("Token", Json['Data']['Token']);
 
@@ -138,35 +139,42 @@ function searchPDU(){
         },
         success: function(Json){
 
-            setTimeout(function(){
-                $('#idTab2Content').removeClass('hide');
-                $('#idTab2Loading').addClass('hide');
-            }, 1000);
+            if ( Json['Login'] =='Y' ) {
 
-            if( Json['Result'] ==true ) {
+                setTimeout(function () {
+                    $('#idTab2Content').removeClass('hide');
+                    $('#idTab2Loading').addClass('hide');
+                }, 1000);
 
-                var t = '';
-                var h = '';
-                $.each( Json['Data']['Device'], function(k,v){
-                    t = $('#idTab2Template').clone().html();
+                if (Json['Result'] == true) {
 
-                    t = str_replace('{{title}}', ((v['Name']!='')? v['Name']: v['URL']), t);
-                    t = str_replace('{{LastTime}}', v['LastTime'], t);
-                    t = str_replace('{{content}}', '', t);
-                    t = str_replace('{{link}}', '', t);
-                    h += t;
-                });
+                    var t = '';
+                    var h = '';
+                    $.each(Json['Data']['Device'], function (k, v) {
+                        t = $('#idTab2Template').clone().html();
 
-                $('#idTab2PDUOne').html(h);
+                        t = str_replace('{{title}}', ((v['Name'] != '') ? v['Name'] : v['URL']), t);
+                        t = str_replace('{{LastTime}}', v['LastTime'], t);
+                        t = str_replace('{{content}}', '', t);
+                        t = str_replace('{{link}}', '', t);
+                        h += t;
+                    });
 
+                    $('#idTab2PDUOne').html(h);
+
+                }
+                else {
+
+                    HoyoToast.Fail({
+                        Message: '<span>錯誤！' + Json['Message'] + '</span>',
+                        Time: 3000,
+                        Position: ''
+                    });
+                }
             }
-            else {
-
-                HoyoToast.Fail({
-                    Message: '<span>錯誤！'+ Json['Message'] +'</span>',
-                    Time: 3000,
-                    Position: ''
-                });
+            else{
+                $('#idAreaLogin').removeClass('hide');
+                $('#idAreaUser').addClass('hide')
             }
 
         },
@@ -187,6 +195,7 @@ function searchPDU(){
 function maintain(){
     var m = '';
     m = $('#idTab4Template').clone().html();
+    m = str_replace('{{Username}}', window.localStorage.Username, m);
     m = str_replace('{{Token}}', window.localStorage.Token, m);
     $('#idTab4Show').html(m);
 }
@@ -197,7 +206,6 @@ $(function(){
     if (idTabs.length) {
 
         idTabs.find('li').click(function(){
-            console.log();
 
             var tab = $(this).data('tab');
             switch(tab){
