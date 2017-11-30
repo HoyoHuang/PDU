@@ -154,44 +154,49 @@
                     <div class="spinner-layer spinner-blue-only">
                         <div class="circle-clipper left">
                             <div class="circle"></div>
-                        </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div id="idTab2Content" class="hide">
 
-            <div class="margin-16"></div>
+                <div class="margin-16"></div>
 
-            <template id="idTab2Template">
-                <div class="col s12 m4">
-                    <div class="card teal lighten-5">
-                        <div class="card-content">
-                            <span class="card-title">{{title}}</span>
-                            <p>最後更新：{{LastTime}}</p>
-                            <p>{{content}}</p>
-                        </div>
-                        <div class="card-action teal lighten-4" style="line-height: 36px;">
-                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">即時</a>
-                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">週</a>
-                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">月</a>
-                            <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">開關電源</a>
-                            <a href="#" class="orange-text darken-4">{{link}}</a>
+                <template id="idTab2Template">
+                    <div class="col s12 m4">
+                        <div class="card teal lighten-5">
+                            <div class="card-content">
+                                <span class="card-title">{{title}}</span>
+                                <p>最後更新：{{LastTime}}</p>
+                                <p>{{content}}</p>
+                            </div>
+                            <div class="card-action teal lighten-4" style="line-height: 36px;">
+                                <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">即時</a>
+                                <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">週</a>
+                                <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">月</a>
+                                <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">開關電源</a>
+                                <a href="#" class="orange-text darken-4 btn btn-small white-text waves-effect">警示</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </template>
+                </template>
 
+                <template id="idTab2TemplateGroup">
+
+                </template>
 
                 <div class="tab-title">單一</div>
                 <div class="row" id="idTab2PDUOne"></div>
 
                 <div class="tab-title">分群</div>
-                <div id="idTab2PDUGroup"></div>
+                <div class="row" id="idTab2PDUGroup"></div>
 
             </div>
         </div>
@@ -202,8 +207,20 @@
             <div class="margin-16"></div>
 
             <template id="idTab4Template">
-                <div>帳號: {{Username}}</div>
-                <div>Token: {{Token}}</div>
+                <div class="card">
+                    <div class="card-content">帳號</div>
+                    <div class="card-action">{{Username}}</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">連線身份</div>
+                    <div class="card-action">{{Token}}</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">版本</div>
+                    <div class="card-action">{{Version}}</div>
+                </div>
             </template>
 
             <div id="idTab4Show"></div>
@@ -227,6 +244,18 @@
     }
 </script>
 
+<script src="cordova.js"></script>
 <script src="js/init.js"></script>
+<script>
+    document.addEventListener("deviceready", getDeviceProperty, false);
+
+    function getDeviceProperty(){
+        var deviceOS  = device.platform  ;  //fetch the device operating system
+        var deviceOSVersion = device.version ;  //fetch the device OS version
+        alert("Device OS: " + deviceOS);
+        alert("Device OS Version: " + deviceOSVersion);
+    }
+
+</script>
 </body>
 </html>

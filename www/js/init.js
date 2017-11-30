@@ -146,24 +146,42 @@ function searchPDU(){
                     $('#idTab2Loading').addClass('hide');
                 }, 1000);
 
+                var t='', h='', gt='', gh='';
+
                 if (Json['Result'] == true) {
 
-                    var t = '';
-                    var h = '';
-                    $.each(Json['Data']['Device'], function (k, v) {
-                        t = $('#idTab2Template').clone().html();
+                    if ( Array.isArray(Json['Data']['Device']) ) {
+                        $.each(Json['Data']['Device'], function (k, v) {
+                            t = $('#idTab2Template').clone().html();
 
-                        t = str_replace('{{title}}', ((v['Name'] != '') ? v['Name'] : v['URL']), t);
-                        t = str_replace('{{LastTime}}', v['LastTime'], t);
-                        t = str_replace('{{content}}', '', t);
-                        t = str_replace('{{link}}', '', t);
-                        h += t;
-                    });
+                            t = str_replace('{{title}}', ((v['Name'] != '') ? v['Name'] : v['URL']), t);
+                            t = str_replace('{{LastTime}}', v['LastTime'], t);
+                            t = str_replace('{{content}}', '', t);
+                            t = str_replace('{{link}}', '', t);
+                            h += t;
+                        });
+                    }
+                    else{
+                        h += '<div class="card col s12 offset-m1 m4">尚未新增 PDU</div>';
+                    }
 
-                    $('#idTab2PDUOne').html(h);
+                    // 分群
+                    if ( Array.isArray(Json['Data']['Group']) ) {
+                        $.each(Json['Data']['Group'], function (k, v) {
+                            gt = $('#idTab2TemplateGroup').clone().html();
+
+                            gt = str_replace('{{link}}', '', gt);
+                            gh += gt;
+                        });
+                    }
+                    else{
+                        gh += '<div class="card col s12 offset-m1 m4">尚未新增分群</div>';
+                    }
 
                 }
                 else {
+                    h += '<div class="card col s12 offset-m1 m4">尚未新增 PDU</div>';
+                    gh += '<div class="card col s12 offset-m1 m4">尚未新增分群</div>';
 
                     HoyoToast.Fail({
                         Message: '<span>錯誤！' + Json['Message'] + '</span>',
@@ -171,7 +189,12 @@ function searchPDU(){
                         Position: ''
                     });
                 }
+
+                $('#idTab2PDUOne').html(h);
+                $('#idTab2PDUGroup').html(gh);
             }
+
+            // Token 錯誤
             else{
                 $('#idAreaLogin').removeClass('hide');
                 $('#idAreaUser').addClass('hide')
@@ -197,6 +220,7 @@ function maintain(){
     m = $('#idTab4Template').clone().html();
     m = str_replace('{{Username}}', window.localStorage.Username, m);
     m = str_replace('{{Token}}', window.localStorage.Token, m);
+    m = str_replace('{{Version}}', Version, m);
     $('#idTab4Show').html(m);
 }
 
