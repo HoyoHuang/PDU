@@ -2,7 +2,7 @@
 
 PageCount = 30;
 
-Version = '1.0.1.17';
+Version = '1.0.1.18';
 //WebSite = 'http://pdu.mj-app.com.tw';
 WebSite = 'http://tn.sly-ha.com.tw/demo/pdu';
 
